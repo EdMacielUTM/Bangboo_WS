@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateBangbooSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bangboo_sale" type="tns:VO_BangbooSales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_BangbooSales">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Bangboo_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalesReceipt_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID_BangbooSales" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateBangbooSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateBangbooSaleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBangbooSales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVO_BangbooSales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_BangbooSales" nillable="true" type="tns:VO_BangbooSales" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBangbooSalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBangbooSalesResult" type="tns:ArrayOfVO_BangbooSales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateBangbooSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateBangbooSale" />
+  </wsdl:message>
+  <wsdl:message name="CreateBangbooSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateBangbooSaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBangbooSalesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBangbooSales" />
+  </wsdl:message>
+  <wsdl:message name="GetBangbooSalesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBangbooSalesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BangbooSale_ServiceSoap">
+    <wsdl:operation name="CreateBangbooSale">
+      <wsdl:input message="tns:CreateBangbooSaleSoapIn" />
+      <wsdl:output message="tns:CreateBangbooSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBangbooSales">
+      <wsdl:input message="tns:GetBangbooSalesSoapIn" />
+      <wsdl:output message="tns:GetBangbooSalesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BangbooSale_ServiceSoap" type="tns:BangbooSale_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateBangbooSale">
+      <soap:operation soapAction="http://tempuri.org/CreateBangbooSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBangbooSales">
+      <soap:operation soapAction="http://tempuri.org/GetBangbooSales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BangbooSale_ServiceSoap12" type="tns:BangbooSale_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateBangbooSale">
+      <soap12:operation soapAction="http://tempuri.org/CreateBangbooSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBangbooSales">
+      <soap12:operation soapAction="http://tempuri.org/GetBangbooSales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BangbooSale_Service">
+    <wsdl:port name="BangbooSale_ServiceSoap" binding="tns:BangbooSale_ServiceSoap">
+      <soap:address location="https://localhost:44397/WebServices/Bangboos/BangbooSale_Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BangbooSale_ServiceSoap12" binding="tns:BangbooSale_ServiceSoap12">
+      <soap12:address location="https://localhost:44397/WebServices/Bangboos/BangbooSale_Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

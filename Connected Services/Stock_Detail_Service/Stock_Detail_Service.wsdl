@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetStockDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Stock_Details">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID_Detail" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID_Bangboo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitCost" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupplyAmount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVO_Stock_Details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Stock_Details" nillable="true" type="tns:VO_Stock_Details" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStockDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockDetailsResult" type="tns:ArrayOfVO_Stock_Details" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStockDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Stock_Detail_ServiceSoap">
+    <wsdl:operation name="GetStockDetails">
+      <wsdl:input message="tns:GetStockDetailsSoapIn" />
+      <wsdl:output message="tns:GetStockDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Stock_Detail_ServiceSoap" type="tns:Stock_Detail_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStockDetails">
+      <soap:operation soapAction="http://tempuri.org/GetStockDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Stock_Detail_ServiceSoap12" type="tns:Stock_Detail_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStockDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetStockDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Stock_Detail_Service">
+    <wsdl:port name="Stock_Detail_ServiceSoap" binding="tns:Stock_Detail_ServiceSoap">
+      <soap:address location="https://localhost:44397/WebServices/Bangboos/Stock_Detail_Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Stock_Detail_ServiceSoap12" binding="tns:Stock_Detail_ServiceSoap12">
+      <soap12:address location="https://localhost:44397/WebServices/Bangboos/Stock_Detail_Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
